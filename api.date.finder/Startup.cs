@@ -32,6 +32,7 @@ namespace api.date.finder
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api.date.finder", Version = "v1" });
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +50,8 @@ namespace api.date.finder
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseEndpoints(endpoints =>
             {
